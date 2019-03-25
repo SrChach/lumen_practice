@@ -11,9 +11,28 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
-    return [
-        'name' => $faker->name,
-        'email' => $faker->email,
-    ];
+$factory->define(App\Profesor::class, function (Faker\Generator $faker) {
+	return [
+		'nombre' => $faker->name,
+		'direccion' => $faker->address,
+		'telefono' => $faker->phoneNumber,
+		'profesion' => $faker->randomElement($array = ['ingenieria', 'matematica', 'fisica'])
+	];
+});
+
+$factory->define(App\Estudiante::class, function (Faker\Generator $faker) {
+	return [
+		'nombre' => $faker->name,
+		'direccion' => $faker->address,
+		'telefono' => $faker->phoneNumber,
+		'carrera' => $faker->randomElement($array = ['ingenieria', 'matematica', 'fisica'])
+	];
+});
+
+$factory->define(App\Curso::class, function (Faker\Generator $faker) {
+	return [
+		'titulo' => $faker->sentence(4),
+		'descripcion' => $faker->paragraph(2),
+		'valor' => $faker->numberBetween(1, 4)
+	];
 });

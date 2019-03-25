@@ -11,15 +11,6 @@
 |
 */
 
-$router->get('/', function () {
-    return ['hola' => 'adios'];
+$router->get('/', function () use ($router) {
+    return $router->app->version();
 });
-
-$router->get('example/{id}', function($id){
-	return 'Parametro: ' . $id;
-});
-
-$router->get('foo', function(){
-	return 'Parametro: ' . $_GET['a'];
-});
-
