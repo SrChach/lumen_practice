@@ -1,0 +1,34 @@
+GET       => /profesores                               => ProfesorController@index
+POST      => /profesores                               => ProfesorController@store
+GET       => /profesores/{profesores}                  => ProfesorController@show
+PUT       => /profesores/{profesores}                  => ProfesorController@update
+PATCH     => /profesores/{profesores}                  => ProfesorController@update
+DELETE    => /profesores/{profesores}                  => ProfesorController@destroy
+
+---------------------------------------------------------------------------------------
+
+GET       => /estudiantes                              => EstudianteController@index
+POST      => /estudiantes                              => EstudianteController@store
+GET       => /estudiantes/{estudiantes}                => EstudianteController@show
+PUT       => /estudiantes/{estudiantes}                => EstudianteController@update
+PATCH     => /estudiantes/{estudiantes}                => EstudianteController@update
+DELETE    => /estudiantes/{estudiantes}                => EstudianteController@destroy
+
+---------------------------------------------------------------------------------------
+
+GET       => /cursos                                   => CursoController@index
+GET       => /cursos/{cursos}                          => CursoController@show
+
+---------------------------------------------------------------------------------------
+
+GET       => /profesores/{profesores}/cursos           => ProfesorCursoController@index
+POST      => /profesores/{profesores}/cursos           => ProfesorCursoController@store
+PUT       => /profesores/{profesores}/cursos/{cursos}  => ProfesorCursoController@update
+PATCH     => /profesores/{profesores}/cursos/{cursos}  => ProfesorCursoController@update
+DELETE    => /profesores/{profesores}/cursos/{cursos}  => ProfesorCursoController@destroy
+
+---------------------------------------------------------------------------------------
+
+GET       => /cursos/{cursos}/estudiantes              => CursoEstudianteController@index
+POST      => /cursos/{cursos}/estudiantes/{estudiantes}=> CursoEstudianteController@store
+DELETE    => /cursos/{cursos}/estudiantes/{estudiantes}=> CursoEstudianteController@destroy
