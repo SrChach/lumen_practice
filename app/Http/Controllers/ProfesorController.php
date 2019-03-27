@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Profesor;
+use Illuminate\Http\Request;
 
 class ProfesorController extends Controller
 {
@@ -22,9 +23,21 @@ class ProfesorController extends Controller
 				return $this->responder($profesor, 200);
 			return $this->responder_error('profesor no encontrado', 404);
 		}
-		
-		public function store(){
-			return "desde 'store' en ProfesorController";
+
+		public function store(Request $request){
+			// Validamos los datos en la petición. Si no cumplen, se retorna un error
+			$reglas = [
+				'nombre' => 'required',
+				'direccion' => 'required',
+				'telefono' => 'required|numeric',
+				'profesion' => 'required|in:ingenieria,matematica,fisica'
+			];
+			$this->validate($request, $reglas);
+
+			// tomamos todos los campos de la petición
+			Profesor::create($request->all());
+
+			return $this->responder('El profesor ha sido creado', 201);
 		}
 		public function update(){
 			return "desde 'update' en ProfesorController";

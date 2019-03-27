@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Estudiante;
+use Illuminate\Http\Request;
 
 class EstudianteController extends Controller
 {
@@ -23,8 +24,19 @@ class EstudianteController extends Controller
 			return $this->responder_error('estudiante no encontrado', 404);
 		}
 
-		public function store(){
-			return "desde 'store' en EstudianteController";
+		public function store(Request $request){
+			$reglas = [
+				'nombre' => 'required',
+				'direccion' => 'required',
+				'telefono' => 'required|numeric',
+				'carrera' => 'required|in:ingenieria,matematica,fisica'
+			];
+			$this->validate($request, $reglas);
+
+			// El método 'create' es de Eloquent
+			Estudiante::create($request->all());
+
+			return $this->responder('El profesor ha sido creado', 201);
 		}
 		
 		public function update(){
