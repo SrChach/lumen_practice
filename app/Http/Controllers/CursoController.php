@@ -12,11 +12,15 @@ class CursoController extends Controller
 
 		public function index(){
 			$cursos = Curso::all();
-
+			//$cursos = Curso::with('profesor')->get();
 			return $this->responder($cursos, 200);
 		}
-		public function show(){
-			return "desde 'show' en CursoController";
+		public function show($id){
+			$curso = Curso::find($id);
+
+			if($curso)
+				return $this->responder($curso, 200);
+			return $this->responder_error('curso no encontrado', 404);
 		}
 
 }
