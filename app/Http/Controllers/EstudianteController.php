@@ -56,8 +56,17 @@ class EstudianteController extends Controller
 			return $this->responder_error("El id proporcionado no corresponde a ningun estudiante", 404);
 		}
 
-		public function destroy(){
-			return "desde 'destroy' en EstudianteController";
+		public function destroy($estudiante_id){
+			$estudiante = Estudiante::find($estudiante_id);
+
+			if($estudiante){
+				// Para borrar dependencia de la tabla intermedia
+				$estudiante->cursos()->sync([]);
+				
+				$estudiante->delete();
+				return $this->responder('El estudiante ha sido eliminado', 200);
+			}
+			return $this->responder_error('Estudiante no encontrado', 404);
 		}
 
 		public function validar_estudiante($request){
