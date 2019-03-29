@@ -1,3 +1,5 @@
+<!-- Leccion 25, minuto 4:30 -->
+
 <?php
 
 namespace App\Http\Controllers;
@@ -60,8 +62,17 @@ class ProfesorCursoController extends Controller
 			return $this->responder('Curso editado', 200);		
 		}
 
-		public function destroy(){
-			return "desde 'destroy' en ProdesorCursoController";
+		// Tenemos que remover antes TODOS los estudiantes del curso
+		public function destroy($profesor_id, $curso_id){
+			$profesor = Profesor::find($profesor_id);
+			if(!$profesor)
+				return responder_error('El profesor asignado no existe', 404);
+
+			$cursos = $profesor->cursos();
+			if(!$cursos->find($curso_id))
+				return responder_error('El curso asignado no existe', 404);
+
+			
 		}
 
 		public function validarCurso($request){
