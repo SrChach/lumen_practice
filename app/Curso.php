@@ -19,7 +19,7 @@ class Curso extends Model implements AuthenticatableContract, AuthorizableContra
 	 * @var array
 	 */
 	protected $fillable = [
-		'titulo', 'descripcion', 'valor'
+		'titulo', 'descripcion', 'valor', 'profesor_id'
 	];
 
 	/**
