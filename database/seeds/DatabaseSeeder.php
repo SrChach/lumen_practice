@@ -28,8 +28,8 @@ class DatabaseSeeder extends Seeder
 		factory(Profesor::class, 50)->create();
 		factory(Estudiante::class, 500)->create();
 
-		factory(Curso::class, 50)
-			->create(['profesor_id' => mt_rand(1, 50)])
+		factory(Curso::class, 40)
+			->create()
 			->each(function($curso){
 				$curso
 					->estudiantes()

@@ -55,8 +55,17 @@ class ProfesorController extends Controller
 			return $this->responder_error("El id proporcionado no corresponde a ningun profesor", 404);
 		}
 
-		public function destroy(){
-			return "desde 'destroy' en ProfesorController";
+		public function destroy($profesor_id){
+			$profesor = Profesor::find($profesor_id);
+
+			if($profesor){
+				// Para borrar dependencia de la tabla intermedia
+				$profesor->cursos()->sync([]);
+				
+				$profesor->delete();
+				return $this->responder('El profesor ha sido eliminado', 200);
+			}
+			return $this->responder_error('Profesor no encontrado', 404);
 		}
 
 		public function validar_profesor($request){

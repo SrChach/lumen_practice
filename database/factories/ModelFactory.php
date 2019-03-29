@@ -33,6 +33,7 @@ $factory->define(App\Curso::class, function (Faker\Generator $faker) {
 	return [
 		'titulo' => $faker->sentence(4),
 		'descripcion' => $faker->paragraph(2),
-		'valor' => $faker->numberBetween(1, 4)
+		'valor' => $faker->numberBetween(1, 4),
+		'profesor_id' => mt_rand(1, 50) // un numero aleatorio entre 1 y 50, ya que crearemos 50 profesores
 	];
 });
