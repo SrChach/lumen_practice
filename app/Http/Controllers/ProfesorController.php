@@ -59,9 +59,11 @@ class ProfesorController extends Controller
 			$profesor = Profesor::find($profesor_id);
 
 			if($profesor){
-				// Para borrar dependencia de la tabla intermedia
-				$profesor->cursos()->sync([]);
-				
+				// Si tiene cursos asociados no se puede eliminar
+				if( sizeof($profesor->cursos) > 0 )
+					return $this->responder_error('No se puede borrar, tiene cursos asociados', 409);
+
+				// Si no tiene cursos asociados lo borramos alv :'v
 				$profesor->delete();
 				return $this->responder('El profesor ha sido eliminado', 200);
 			}
