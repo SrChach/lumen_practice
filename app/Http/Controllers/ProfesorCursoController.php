@@ -1,5 +1,3 @@
-<!-- Leccion 25, minuto 4:30 -->
-
 <?php
 
 namespace App\Http\Controllers;
@@ -66,12 +64,18 @@ class ProfesorCursoController extends Controller
 		public function destroy($profesor_id, $curso_id){
 			$profesor = Profesor::find($profesor_id);
 			if(!$profesor)
-				return responder_error('El profesor asignado no existe', 404);
+				return $this->responder_error('El profesor asignado no existe', 404);
 
 			$cursos = $profesor->cursos();
 			if(!$cursos->find($curso_id))
-				return responder_error('El curso asignado no existe', 404);
+				return $this->responder_error('El curso asignado no existe', 404);
 
+			$curso = Curso::find($curso_id);
+			// Si no le pasas parámetros a detach, vuela todos los asociados a él
+			$curso->estudiantes()->detach();
+
+			$curso->delete();
+			return $this->responder('Curso eliminado', 200);
 			
 		}
 

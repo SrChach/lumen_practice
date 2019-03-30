@@ -38,7 +38,7 @@ $router->get('/profesores/{profesores}/cursos', 'ProfesorCursoController@index')
 $router->post('/profesores/{profesores}/cursos', 'ProfesorCursoController@store');
 $router->put('/profesores/{profesores}/cursos/{cursos}', 'ProfesorCursoController@update');
 $router->patch('/profesores/{profesores}/cursos/{cursos}', 'ProfesorCursoController@update');
-$router->delete('/profesores/{profesores}/cursos/{cursos}', 'ProfesorCursoController@update');
+$router->delete('/profesores/{profesores}/cursos/{cursos}', 'ProfesorCursoController@destroy');
 
 
 $router->get('/cursos/{cursos}/estudiantes', 'CursoEstudianteController@index');
