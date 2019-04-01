@@ -28,7 +28,9 @@ class ProfesorController extends Controller
 			$this->validar_profesor($request);
 			
 			// tomamos todos los campos de la petición
-			Profesor::create($request->all());
+			$requestData = $request->all();
+			$requestData['password'] = password_hash($request->get('password'), PASSWORD_BCRYPT);
+			Profesor::create($requestData);
 			return $this->responder('El profesor ha sido creado', 201);
 		}
 

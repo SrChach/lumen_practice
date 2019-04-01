@@ -21,7 +21,7 @@ class Profesor extends Model implements AuthenticatableContract, AuthorizableCon
 	 * @var array
 	 */
 	protected $fillable = [
-		'nombre', 'direccion', 'telefono', 'profesion', 'id'
+		'nombre', 'direccion', 'telefono', 'profesion', 'id', 'email', 'password'
 	];
 
 	/**
@@ -30,7 +30,7 @@ class Profesor extends Model implements AuthenticatableContract, AuthorizableCon
 	 * @var array
 	 */
 	protected $hidden = [
-		'password', 'created_at', 'updated_at'
+		'created_at', 'updated_at'
 	];
 
 	public function cursos(){
