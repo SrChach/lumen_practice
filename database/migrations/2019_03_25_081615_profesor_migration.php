@@ -19,6 +19,9 @@ class ProfesorMigration extends Migration
             $table->string('direccion');
             $table->string('telefono');
             $table->string('profesion');
+            $table->string('email');
+            $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

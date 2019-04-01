@@ -48,6 +48,15 @@ $app->singleton(
 
 /*
 |--------------------------------------------------------------------------
+| Load Config Auth
+|--------------------------------------------------------------------------
+|
+*/
+
+$app->configure('auth');
+
+/*
+|--------------------------------------------------------------------------
 | Register Middleware
 |--------------------------------------------------------------------------
 |
@@ -61,9 +70,9 @@ $app->singleton(
 //     App\Http\Middleware\ExampleMiddleware::class
 // ]);
 
-// $app->routeMiddleware([
-//     'auth' => App\Http\Middleware\Authenticate::class,
-// ]);
+$app->routeMiddleware([
+    'auth' => App\Http\Middleware\Authenticate::class,
+]);
 
 /*
 |--------------------------------------------------------------------------
@@ -77,8 +86,18 @@ $app->singleton(
 */
 
 // $app->register(App\Providers\AppServiceProvider::class);
-// $app->register(App\Providers\AuthServiceProvider::class);
+$app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
+
+// Random key in .env implementation
+$app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
+
+// Lumen passport tokens implementation
+$app->register(Laravel\Passport\PassportServiceProvider::class);
+$app->register(Dusterio\LumenPassport\PassportServiceProvider::class);
+
+// $app se convierte en $app->router por los cambios a Lumen desde la 5.5 (Mover a AuthServiceProvider)
+\Dusterio\LumenPassport\LumenPassport::routes($app->router);
 
 /*
 |--------------------------------------------------------------------------

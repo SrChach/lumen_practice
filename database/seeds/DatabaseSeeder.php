@@ -26,6 +26,11 @@ class DatabaseSeeder extends Seeder
 		DB::table('curso_estudiante')->truncate();
 
 		factory(Profesor::class, 50)->create();
+		factory(App\Profesor::class)->create([
+            'nombre' => 'Heisenberg',
+            'email' => 'heisenberg@breakingbad.com',
+            'password' => password_hash('pass', PASSWORD_BCRYPT)
+        ]);
 		factory(Estudiante::class, 500)->create();
 
 		factory(Curso::class, 40)

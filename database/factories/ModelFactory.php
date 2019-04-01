@@ -16,7 +16,9 @@ $factory->define(App\Profesor::class, function (Faker\Generator $faker) {
 		'nombre' => $faker->name,
 		'direccion' => $faker->address,
 		'telefono' => $faker->phoneNumber,
-		'profesion' => $faker->randomElement($array = ['ingenieria', 'matematica', 'fisica'])
+		'profesion' => $faker->randomElement($array = ['ingenieria', 'matematica', 'fisica']),
+		'email' => $faker->email,
+		'password' => $faker->password
 	];
 });
 

@@ -17,12 +17,14 @@ $router->get('/', function () use ($router) {
 	return $router->app->version();
 });
 
-$router->get('/profesores', 'ProfesorController@index');
-$router->post('/profesores', 'ProfesorController@store');
-$router->get('/profesores/{profesores}', 'ProfesorController@show');
-$router->put('/profesores/{profesores}', 'ProfesorController@update');
-$router->patch('/profesores/{profesores}', 'ProfesorController@update');
-$router->delete('/profesores/{profesores}', 'ProfesorController@destroy');
+$router->group(['middleware' => 'auth:api'], function() use ($router){
+	$router->get('/profesores', 'ProfesorController@index');
+	$router->post('/profesores', 'ProfesorController@store');
+	$router->get('/profesores/{profesores}', 'ProfesorController@show');
+	$router->put('/profesores/{profesores}', 'ProfesorController@update');
+	$router->patch('/profesores/{profesores}', 'ProfesorController@update');
+	$router->delete('/profesores/{profesores}', 'ProfesorController@destroy');
+});
 
 $router->get('/estudiantes', 'EstudianteController@index');
 $router->post('/estudiantes', 'EstudianteController@store');

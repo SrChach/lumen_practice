@@ -7,10 +7,11 @@ use Laravel\Lumen\Auth\Authorizable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Laravel\Passport\HasApiTokens;
 
 class Profesor extends Model implements AuthenticatableContract, AuthorizableContract
 {
-	use Authenticatable, Authorizable;
+	use HasApiTokens, Authenticatable, Authorizable;
 
 
 	protected $table = "profesores";
@@ -29,7 +30,7 @@ class Profesor extends Model implements AuthenticatableContract, AuthorizableCon
 	 * @var array
 	 */
 	protected $hidden = [
-		'created_at', 'updated_at'
+		'password', 'created_at', 'updated_at'
 	];
 
 	public function cursos(){

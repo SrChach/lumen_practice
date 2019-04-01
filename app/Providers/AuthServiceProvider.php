@@ -15,7 +15,9 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        // no sé si va acá o en boot (abajo)
+        // $app se convierte en $app->router por los cambios a Lumen desde la 5.5
+        //\Dusterio\LumenPassport\LumenPassport::routes($this->app->router);
     }
 
     /**
